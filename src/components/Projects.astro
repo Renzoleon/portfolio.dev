@@ -1,0 +1,51 @@
+---
+import Php from './icons/Php.astro';
+import Bootstrap from './icons/Bootstrap.astro';
+
+const TAGS = {
+    PHP: {
+        name: "PHP",
+        class: "bg-black text-white",
+        icon: Php,
+    },
+    BOOTSTRAP: {
+        name: "Bootstrap 5",
+        class: "bg-[#003159] text-white",
+        icon: Bootstrap,
+    },
+
+}
+const PROJECTS = [
+    {
+
+        title: 'Proyecto 1',
+        description: 'Este fue un proyecto que lleve a cabo en conjunto con demas compañeros donde nos encargabamos del registro de pagos de la unidad de postgrado',
+        link: '#',
+        github: '#',
+        image: 'public/proyecto01.png',
+        tags: [TAGS.PHP,TAGS.BOOTSTRAP]
+    }
+    
+]
+---
+{
+PROJECTS.map(({image, title,description,tags})=>(
+    <article>
+        <h3 class="text-2x1 font-semibold text-yellow-200 mb-2">{title}</h3>
+        <p class="text-lg mb-4 text-pretty">{description}</p>
+        <ul class="flex gap-x-2 flex-row mb-2">
+            {tags.map((tag) =>(
+                <li>
+                    <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                        <tag.icon class = "size-4" />
+                        {tag.name}
+                    </span>
+                </li>
+            ))}
+        </ul>
+        <img class="rounded shadow-2xl shadow-white/10" src={image} 
+        alt={`Captura de pantalla del proyecto ${image}`} />
+    </article>
+))
+
+}
